@@ -1,9 +1,9 @@
 import React from "react";
-import { useTypewriter, Cursor } from "react-simple-typewriter";
+import { useTypewriter } from "react-simple-typewriter";
 
 const Opening = () => {
   const [typeEffect] = useTypewriter({
-    words: ["OMMUNITY", "OME-UNITY", "OMITY"],
+    words: ["OMMUNITY", "OME UNITY", "OMITY"],
     loop: {},
     typeSpeed: 150,
     deleteSpeed: 70,

@@ -11,7 +11,7 @@ export default {
         hamSmith: ['"Hammersmith One"', 'sans'],
       },
       backgroundImage: {
-        'opening': "url('https://res.cloudinary.com/sandesh-06/image/upload/v1715497985/pexels-george-desipris-889545_hqtv0z.jpg')",
+        'opening': "url('https://res.cloudinary.com/sandesh-06/image/upload/v1715528742/Comity/Untitled_design_wucghe.png')",
       },
     },
   },

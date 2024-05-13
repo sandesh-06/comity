@@ -5,12 +5,18 @@ import Input from "./ReuseableComponents/Input";
 import Button from "./ReuseableComponents/Button";
 import Opening from "./TypeEffectText/Opening";
 import Footer from "./Footer/Footer";
+import ThemeButton from "./ThemeButton/ThemeButton";
+
 export {
     Login,
     SignUp,
     LoginWithSignup,
+
     Input,
     Button,
+
     Opening, 
-    Footer
+    Footer,
+
+    ThemeButton,
 }

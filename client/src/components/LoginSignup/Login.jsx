@@ -2,14 +2,22 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { Input, Button } from "../index";
 import { FaUser, FaLock } from "react-icons/fa";
-const Login = ({showLogin, setShowLogin}) => {
-  const { register, handleSubmit, control } = useForm();
+const Login = ({setShowLogin}) => {
+  const { register, handleSubmit} = useForm();
+
+  const LoginSubmit = (data)=>{
+    try {
+      console.log(data)
+    } catch (error) {
+      console.log(error.message)
+    }
+  }
   return (
-    <div className="flex h-1/2 mx-auto bg-slate-700 rounded-lg shadow-2xl ">
+    <div className="flex h-1/2 mx-auto shadow-2xl ">
       {/* The Image */}
       <div className="hidden flex-none w-1/3 sm:inline-block">
         <img
-          src="https://res.cloudinary.com/sandesh-06/image/upload/e_improve,w_300,h_600,c_thumb,g_auto/v1715449156/pexels-veeterzy-114979_tphtop.jpg"
+          src="https://res.cloudinary.com/sandesh-06/image/upload/e_improve,w_300,h_600,c_thumb,g_auto/v1715449156/Comity/pexels-veeterzy-114979_tphtop.jpg"
           alt=""
           className="rounded-l-lg h-full"
         />
@@ -25,17 +33,19 @@ const Login = ({showLogin, setShowLogin}) => {
             Login to your account
           </p>
         </h1>
-        <form action="" className="text-center">
+        <form onSubmit={handleSubmit(LoginSubmit)} className="text-center">
           <Input
             label={<FaUser size="25px" />}
             placeholder="Username"
             className="text-white my-5 bg-transparent border-b border-black border-t-0 border-r-0 border-l-0 focus:bg-transparent focus:border-b-purple-500 placeholder:text-slate-500 w-60"
+            {...register("email", {required: true})}
           />
           <Input
             label={<FaLock size="25px" />}
             type="password"
             placeholder="Password"
             className="text-white my-5 bg-transparent border-b border-black border-t-0 border-r-0 border-l-0 focus:bg-transparent focus:border-b-purple-500 placeholder:text-slate-500 w-60"
+            {...register("password", {required: true})}
           />
 
           <Button
@@ -50,7 +60,7 @@ const Login = ({showLogin, setShowLogin}) => {
         {/* Sign up cue */}
         <div className="mt-10">
           <p className="font-cata text-white text-sm lg:text-lg">
-            Don't have an account? <span className="text-purple-400 italic hover:cursor-pointer hover:text-purple-300" onClick={(showLogin)=>setShowLogin(false)}>Sign Up</span>
+            Don't have an account? <span className="text-purple-400 italic hover:cursor-pointer hover:text-purple-300" onClick={()=>setShowLogin(false)}>Sign Up</span>
           </p>
         </div>
       </div>

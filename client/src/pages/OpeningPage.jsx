@@ -4,11 +4,11 @@ import { LoginWithSignup, Opening, Footer } from '../components'
 
 const OpeningPage = () => {
   return (
-     <section className="flex flex-col justify-between gap-4 md:flex-row flex-nowrap md:justify-center items-center min-h-screen bg-opening bg-cover brightness-75"> 
+     <main className="flex flex-col justify-between gap-4 md:flex-row flex-nowrap md:justify-center items-center min-h-screen bg-opening bg-cover"> 
       <Opening/>
       <LoginWithSignup/>
       <Footer />
-    </section>
+    </main>
   )
 }
 
