@@ -6,17 +6,25 @@ import Button from "./ReuseableComponents/Button";
 import Opening from "./TypeEffectText/Opening";
 import Footer from "./Footer/Footer";
 import ThemeButton from "./ThemeButton/ThemeButton";
+import ProfileName from "./ReuseableComponents/ProfileName";
+import LeftContent from "./Home/LeftContent";
+import Clickable from "./ReuseableComponents/Clickable";
 
 export {
+    // Opening
     Login,
     SignUp,
     LoginWithSignup,
+    Opening, 
 
+    //Reuseable
     Input,
     Button,
-
-    Opening, 
     Footer,
-
     ThemeButton,
+    ProfileName,
+    Clickable, 
+    
+    // Home
+    LeftContent,
 }

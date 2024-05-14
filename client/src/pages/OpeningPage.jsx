@@ -1,15 +1,19 @@
-import React from 'react'
-import { LoginWithSignup, Opening, Footer } from '../components'
-
+import React from "react";
+import { LoginWithSignup, Opening, Footer } from "../components";
 
 const OpeningPage = () => {
   return (
-     <main className="flex flex-col justify-between gap-4 md:flex-row flex-nowrap md:justify-center items-center min-h-screen bg-opening bg-cover"> 
-      <Opening/>
-      <LoginWithSignup/>
-      <Footer />
+    <main className="flex flex-col justify-between min-h-screen bg-opening bg-cover">
+      <div></div>
+      <div className="flex flex-col md:flex-row justify-center items-center">
+        <Opening />
+        <LoginWithSignup />
+      </div>
+      <div>
+        <Footer />
+      </div>
     </main>
-  )
-}
+  );
+};
 
-export default OpeningPage
+export default OpeningPage;

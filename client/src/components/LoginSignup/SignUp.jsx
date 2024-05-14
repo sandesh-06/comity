@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Input, Button } from "../index";
 import { FaUser, FaLock, FaUnlock } from "react-icons/fa";
 import { IoMail } from "react-icons/io5";
+import { MdDriveFileRenameOutline } from "react-icons/md";
 import { useForm } from "react-hook-form";
 
 const SignUp = ({setShowLogin}) => {
@@ -28,7 +29,7 @@ const SignUp = ({setShowLogin}) => {
     }
   };
   return (
-    <div className="flex h-1/2 mx-auto justify-between">
+    <div className="flex mx-auto justify-between">
 
       {/* The Form */}
       <div className="p-6 flex-2 flex flex-col justify-center max-w-fit md:px-6 rounded-l items-center">
@@ -41,8 +42,16 @@ const SignUp = ({setShowLogin}) => {
           </p>
         </h1>
         {/* Error message */}
-        {msg && msg.status ? (<h1 className="font-cata text-sm text-green-500">{msg.message}</h1>) : (<h1 className="font-cata text-sm text-red-500">{msg.message}</h1>)}
+        {msg && msg.status ? (<h1 className="font-cata text-md font-semibold text-green-500">{msg.message}</h1>) : (<h1 className="font-cata text-md font-semibold text-red-500">{msg.message}</h1>)}
         <form onSubmit={handleSubmit(SignupSubmit)} className="text-center">
+          <Input
+            label={<MdDriveFileRenameOutline size="25px" />}
+            placeholder="Full Name"
+            type="text"
+            className="text-white my-5 bg-transparent border-b border-black border-t-0 border-r-0 border-l-0 focus:bg-transparent focus:border-b-purple-500 placeholder:text-slate-500 w-60"
+            required={true}
+            {...register("fullName", { required: true })}
+          />
           <Input
             label={<IoMail size="25px" />}
             placeholder="Email"

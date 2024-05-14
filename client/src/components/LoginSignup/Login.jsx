@@ -13,7 +13,7 @@ const Login = ({setShowLogin}) => {
     }
   }
   return (
-    <div className="flex h-1/2 mx-auto shadow-2xl ">
+    <div className="flex mx-auto shadow-2xl">
       {/* The Image */}
       <div className="hidden flex-none w-1/3 sm:inline-block">
         <img

@@ -1,4 +1,6 @@
+import PositionUnderstand from "./PositionUnderstand"
 import Header from "./components/Header/Header"
+import HomePage from "./pages/HomePage"
 import OpeningPage from "./pages/OpeningPage"
 
 
@@ -7,8 +9,10 @@ function App() {
 
   return (
     <>
-      {/* <OpeningPage /> */}
       <Header />
+      <HomePage />
+      {/* <OpeningPage /> */}
+      {/* <PositionUnderstand /> */}
     </>
   )
 }
