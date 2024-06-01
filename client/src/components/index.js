@@ -18,7 +18,7 @@ import ThoughtsSVG from "./Svgs/ThoughtsSVG";
 import ExploreAsideContent from "./ExploreComity/ExploreAsideContent";
 import ExploreMainContent from "./ExploreComity/ExploreMainContent";
 import PostPreview from "./Posts/PostPreview";
-
+import Header from "./Header/Header"
 export {
     // Opening
     Login,
@@ -36,7 +36,8 @@ export {
     SearchBar,
     PostCard,
     PostPreview,
-
+    Header,
+    
     // Home
     LeftContent,
     RightContent,

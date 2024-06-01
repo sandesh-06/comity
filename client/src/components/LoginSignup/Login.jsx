@@ -16,18 +16,15 @@ const Login = ({ setShowLogin }) => {
 
   const { register, handleSubmit } = useForm();
   
-
-
   const LoginSubmit = async (formData) => {
     try {
       const response = await login(formData).unwrap();
       if (response.success){
-        console.log(response)
         dispatch(loginUser(response.data.user))
         navigate("/")
       }
     } catch (err) {
-      console.log(err)
+      // console.log(err)
       setError(err.data?.message);
     }
   };

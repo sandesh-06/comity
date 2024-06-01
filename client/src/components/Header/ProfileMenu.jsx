@@ -28,15 +28,13 @@ const ProfileMenu = ({ className = "" }) => {
   ];
   const [logout, { isError, isLoading }] = useLogoutMutation();
 
-  const navigate = useNavigate()
   const dispatch = useDispatch()
   const handleLogOut = async()=>{
     try {
       const response = await logout().unwrap()
-      console.log(response)
       if(response.success) dispatch(logoutUser())
     } catch (error) {
-      console.log(error)
+      // console.log(error)
     }
   }
   return (

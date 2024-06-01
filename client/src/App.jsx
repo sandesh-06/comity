@@ -1,16 +1,13 @@
 import { Outlet } from "react-router-dom";
-import PositionUnderstand from "./PositionUnderstand";
-import Header from "./components/Header/Header";
-import { BoxEffect } from "./components/ui/BoxEffect";
+import { Header } from "./components";
+import { useSelector } from "react-redux";
 
-import HomePage from "./pages/Home/HomePage";
-import OpeningPage from "./pages/Opening/OpeningPage";
-
-function App({ children }) {
+function App() {
+  const isPageLoading = useSelector((state)=>state.auth.isPageLoading)
   return (
     <>
-      <Header />
-      <main className="w-screen h-screen overflow-y-auto pt-16 bg-slate-100 dark:bg-slate-800">
+       {!isPageLoading && <Header />}
+      <main className={`w-screen h-screen overflow-y-auto ${!isPageLoading ? "pt-16":"pt-0"} bg-slate-100 dark:bg-slate-800`}>
         <Outlet />
       </main>
     </>

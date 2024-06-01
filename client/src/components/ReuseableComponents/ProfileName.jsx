@@ -1,6 +1,9 @@
 import React from "react";
+import { useSelector } from "react-redux";
 
 const ProfileName = ({className=""}) => {
+  const userDetails = useSelector((state)=>state.auth.user)
+  console.log("user", userDetails)
   return (
     <div className={`font-cata flex gap-6 rounded-md items-center text-lg hover:bg-gray-200 dark:hover:bg-slate-700 hover:cursor-pointer text-slate-700 dark:text-slate-50 ${className}`}>
       <img
@@ -10,7 +13,7 @@ const ProfileName = ({className=""}) => {
         height="30px"
         className="rounded-full"
       />
-      <p className="">Sandesh S</p>
+      <p className="">{userDetails?.fullname}</p>
     </div>
   );
 };
