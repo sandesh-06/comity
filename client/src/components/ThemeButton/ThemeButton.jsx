@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect } from "react";
 import "./ThemeButton.css";
 import {useDispatch, useSelector} from "react-redux"
-import { changeTheme } from "../../store/slices/themeSlice";
+import { changeTheme } from "../../redux/stateSlices/themeSlice";
 const ThemeButton = () => {
 
   //  If there's no theme in localstorage, then set theme to dark

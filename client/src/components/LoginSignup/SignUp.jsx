@@ -4,6 +4,8 @@ import { FaUser, FaLock, FaUnlock } from "react-icons/fa";
 import { IoMail } from "react-icons/io5";
 import { MdDriveFileRenameOutline } from "react-icons/md";
 import { useForm } from "react-hook-form";
+import { useCreateAccountMutation } from "../../redux/apiSlices/users/userApiSlice";
+import { useNavigate } from "react-router-dom";
 
 const SignUp = ({setShowLogin}) => {
   const [msg, setMsg] = useState({
@@ -11,21 +13,25 @@ const SignUp = ({setShowLogin}) => {
     message: ""
   });
 
-
   const { register, handleSubmit, watch } = useForm();
   const watchFields = watch();
- 
-  const SignupSubmit = (data) => {
+  const [createAccount, { isError, isLoading }] = useCreateAccountMutation();
+
+  const SignupSubmit = async(formData) => {
     try {
-      if(data.password !== data.confirm_password){
-        setMsg({status:false, message:"Passwords should match"})
+      if(formData.password !== formData.confirmPassword){
+        setMsg({message:"Passwords should match"})
       }
       else{
-        console.log(data)
-        setMsg({status:true, message:"Account created successfully!"})
+        const data = await createAccount(formData).unwrap();
+        setMsg({status: true, message: "Account created successfully!"})
+        setTimeout(() => {
+          setShowLogin(true)
+        }, 2000);
       };
     } catch (error) {
-      setError(error.message);
+      console.log(error.data.message);
+      setMsg({message:error.data.message})
     }
   };
   return (
@@ -42,7 +48,7 @@ const SignUp = ({setShowLogin}) => {
           </p>
         </h1>
         {/* Error message */}
-        {msg && msg.status ? (<h1 className="font-cata text-md font-semibold text-green-500">{msg.message}</h1>) : (<h1 className="font-cata text-md font-semibold text-red-500">{msg.message}</h1>)}
+        {msg && msg.status ? (<h1 className="font-cata text-md font-medium text-green-500">{msg.message}</h1>) : (<h1 className="font-cata text-md font-medium text-red-500">{msg.message}</h1>)}
         <form onSubmit={handleSubmit(SignupSubmit)} className="text-center">
           <Input
             label={<MdDriveFileRenameOutline size="25px" />}
@@ -50,7 +56,7 @@ const SignUp = ({setShowLogin}) => {
             type="text"
             className="text-white my-5 bg-transparent border-b border-black border-t-0 border-r-0 border-l-0 focus:bg-transparent focus:border-b-purple-500 placeholder:text-slate-500 w-60"
             required={true}
-            {...register("fullName", { required: true })}
+            {...register("fullname", { required: true })}
           />
           <Input
             label={<IoMail size="25px" />}
@@ -77,7 +83,7 @@ const SignUp = ({setShowLogin}) => {
           />
           <Input
             label={
-              watchFields.password === watchFields.confirm_password ? (
+              watchFields.password === watchFields.confirmPassword ? (
                 <FaLock size="25px" />
               ) : (
                 <FaUnlock size="25px" />
@@ -87,9 +93,9 @@ const SignUp = ({setShowLogin}) => {
             placeholder="Confirm Password"
             className="text-white my-5 bg-transparent border-b border-black border-t-0 border-r-0 border-l-0 focus:bg-transparent focus:border-b-purple-500 placeholder:text-slate-500 w-60"
             required={true}
-            {...register("confirm_password", { required: true })}
+            {...register("confirmPassword", { required: true })}
           />
-          {watchFields && watchFields.confirm_password !== watchFields.password ? (
+          {watchFields && watchFields.confirmPassword !== watchFields.password ? (
             <div className="text-red-500">Password does not match</div>
           ) : (
             <div className="text-green-500">Password match</div>

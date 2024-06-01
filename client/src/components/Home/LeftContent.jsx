@@ -25,71 +25,73 @@ const LeftContent = () => {
     },
   ];
   return (
-    <div className="hidden lg:flex flex-col h-full px-3 w-1/5 my-2">
+    <aside className="h-full px-3 overflow-y-auto no-scrollbar">
+      <div className="flex flex-col pt-2 w-3/4">
         {/* Profile */}
-      <div className="dark:border-b-gray-600 text-center">
-        <ProfileName className="px-2 py-4 font-semibold dark:text-slate-100" />
-      </div>
-      <hr className="border-b border-slate-300 dark:border-slate-700" />
+        <div className="dark:border-b-gray-600 text-center mb-2">
+          <ProfileName className="px-2 py-3 font-semibold dark:text-slate-100" />
+        </div>
+        <hr className="border-b border-slate-300 dark:border-slate-700" />
 
-      {/* Comity Suggestions */}
-      <div className="flex flex-col my-3 text-nowrap">
-        <p className="font-cata text-gray-500 font-semibold text-xl px-2 my-1">
-          Comity Suggestions
-        </p>
-        {dummySuggestionData.map((data) => (
-          <div className="flex-none" key={data.title}>
-            <Clickable
-              className="flex-none"
-              preText={
-                <img
-                  className="rounded-full"
-                  src={data.img}
-                  width="30px"
-                  height="30px"
-                />
-              }
-              text={data.title}
-            />
-          </div>
-        ))}
-      </div>
-      <hr className="border-b border-slate-300 dark:border-slate-700" />
+        {/* Comity Suggestions */}
+        <div className="flex flex-col my-3 text-nowrap">
+          <p className="font-cata text-gray-500 font-semibold text-xl px-2 my-1">
+            Comity Suggestions
+          </p>
+          {dummySuggestionData.map((data) => (
+            <div className="flex-none " key={data.title}>
+              <Clickable
+                className="flex-none text-lg"
+                preText={
+                  <img
+                    className="rounded-full"
+                    src={data.img}
+                    width="30px"
+                    height="30px"
+                  />
+                }
+                text={data.title}
+              />
+            </div>
+          ))}
+        </div>
+        <hr className="border-b border-slate-300 dark:border-slate-700" />
 
-      {/* Recent Events */}
-      <div className="flex flex-col my-3 text-nowrap">
-        <p className="font-cata text-gray-500 font-semibold text-xl px-2 my-1">
-          Recent Events
-        </p>
-        {dummySuggestionData.map((data) => (
-          <div className="flex-none" key={data.title}>
-            <Clickable
-              className="flex-none"
-              preText={
-                <img
-                  className="rounded-full"
-                  src={data.img}
-                  width="30px"
-                  height="30px"
-                />
-              }
-              text={data.title}
-            />
-          </div>
-        ))}
-      </div>
-      <hr className="border-b border-slate-300 dark:border-slate-700" />
+        {/* Recent Events */}
+        <div className="flex flex-col my-3 text-nowrap">
+          <p className="font-cata text-gray-500 font-semibold text-xl px-2 my-1">
+            Recent Events
+          </p>
+          {dummySuggestionData.map((data) => (
+            <div className="flex-none" key={data.title}>
+              <Clickable
+                className="flex-none text-lg"
+                preText={
+                  <img
+                    className="rounded-full"
+                    src={data.img}
+                    width="30px"
+                    height="30px"
+                  />
+                }
+                text={data.title}
+              />
+            </div>
+          ))}
+        </div>
+        <hr className="border-b border-slate-300 dark:border-slate-700" />
 
-      {/* Start Comity Button */}
-      <div className="font-cata text-lg px-2 mt-5 font-bold hover:cursor-pointer text-nowrap flex-none">
-        <div className="flex gap-2 items-center bg-gray-300 text-slate-800 hover:bg-gray-200 dark:text-slate-50 dark:bg-slate-600 px-3 py-2 rounded-md dark:hover:bg-slate-700 xl:w-3/4">
-          <div>
-            <MdGroupAdd size="25px"/>
+        {/* Start Comity Button */}
+        <div className="font-cata text-lg px-2 mt-5 font-bold hover:cursor-pointer text-nowrap flex-none">
+          <div className="flex gap-2 items-center bg-gray-300 text-slate-800 hover:bg-gray-200 dark:text-slate-50 dark:bg-slate-600 px-3 py-2 rounded-md dark:hover:bg-slate-700 max-w-fit">
+            <div>
+              <MdGroupAdd size="25px"/>
+            </div>
+            <button>Start Comity</button>
           </div>
-          <button>Start A Comity</button>
         </div>
       </div>
-    </div>
+    </aside>
   );
 };
 

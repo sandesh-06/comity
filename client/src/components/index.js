@@ -8,7 +8,16 @@ import Footer from "./Footer/Footer";
 import ThemeButton from "./ThemeButton/ThemeButton";
 import ProfileName from "./ReuseableComponents/ProfileName";
 import LeftContent from "./Home/LeftContent";
+import RightContent from "./Home/RightContent";
 import Clickable from "./ReuseableComponents/Clickable";
+import SearchBar from "./ReuseableComponents/SearchBar/SearchBar";
+import PostCard from "./Posts/PostCard";
+import MediaSVG from "./Svgs/MediaSVG";
+import EventSVG from "./Svgs/EventSVG";
+import ThoughtsSVG from "./Svgs/ThoughtsSVG";
+import ExploreAsideContent from "./ExploreComity/ExploreAsideContent";
+import ExploreMainContent from "./ExploreComity/ExploreMainContent";
+import PostPreview from "./Posts/PostPreview";
 
 export {
     // Opening
@@ -24,7 +33,20 @@ export {
     ThemeButton,
     ProfileName,
     Clickable, 
-    
+    SearchBar,
+    PostCard,
+    PostPreview,
+
     // Home
     LeftContent,
+    RightContent,
+
+    //Explore Comity
+    ExploreAsideContent,
+    ExploreMainContent,
+    
+    //SVG's
+    MediaSVG,
+    EventSVG,
+    ThoughtsSVG,
 }
