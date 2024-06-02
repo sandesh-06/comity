@@ -3,7 +3,7 @@ import React from "react";
 
 const PostPreview = ({ post }) => {
   return (
-    <div className="w-full h-full overflow-hidden cursor-pointer bg-slate-50 dark:bg-slate-900 rounded-md shadow-xl">
+    <div className="w-full h-full overflow-hidden cursor-pointer bg-white dark:bg-slate-900 rounded-md shadow-xl">
       {/* Username and profile */}
       <div className="p-2 flex gap-3 items-center">
         <div className="w-8 h-8 flex-shrink-0 overflow-hidden rounded-full">

@@ -9,17 +9,17 @@ const AuthLayout = ({ children, authentication = true }) => {
   const isUserAuthenticated = useSelector(
     (state) => state.auth.isAuthenticated
   );
-  const isLoading = useSelector((state)=> state.auth.isPageLoading)
-  
-  const dispatch = useDispatch()
+  const isLoading = useSelector((state) => state.auth.isPageLoading);
+
+  const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(setPageLoading(true))
+    dispatch(setPageLoading(true));
     if (authentication && isUserAuthenticated !== authentication) {
       navigate("/welcome");
     } else if (!authentication && isUserAuthenticated !== authentication) {
       navigate("/");
     }
-    dispatch(setPageLoading(false))
+    dispatch(setPageLoading(false));
     // setTimeout(() => {
     //     dispatch(setPageLoading(false))
     // }, 1400);
@@ -30,9 +30,7 @@ const AuthLayout = ({ children, authentication = true }) => {
       <SparklesPreview />
     </>
   ) : (
-    <>
-      {children}
-    </>
+    <>{children}</>
   );
 };
 

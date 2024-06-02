@@ -10,13 +10,14 @@ const postSchema = new Schema(
     },
     content:{
         type: String,
+        required: true,
     },
     createdBy: {
       type: Schema.Types.ObjectId,
       ref: 'User',
       required: true,
     },
-    postImage:{
+    description:{
         type: String,
     }
   },

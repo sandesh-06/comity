@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { FaRegHeart } from "react-icons/fa";
 import { FaRegComment } from "react-icons/fa";
 import { FaRegBookmark } from "react-icons/fa6";
-const PostCard = ({ post }) => {
+const PostCard = ({ post, className="" }) => {
   return (
-    <div className="bg-slate-50 shadow-xl dark:bg-slate-900 dark:shadow-md rounded-lg w-full lg:w-4/5 my-2 pb-5 text-slate-800 dark:text-slate-100 font-cata lett">
+    <div className={`bg-white shadow-xl dark:bg-slate-900 dark:shadow-md rounded-lg w-full ${className} pb-5 text-slate-800 dark:text-slate-100 font-cata lett`}>
       {/* Post header */}
       <div className="p-4 flex items-center pb-0">
         <img
@@ -29,7 +29,7 @@ const PostCard = ({ post }) => {
 
       {/* Image */}
       {post.postImage ? (
-        <div className="w-full h-[50vh] sm:h-[60vh] flex items-center justify-center bg-gray-300 dark:bg-[#000000bf] flex-none ">
+        <div className="w-full h-[50vh] sm:h-[35rem] flex items-center justify-center bg-gray-300 dark:bg-[#000000bf] flex-none ">
           <img
             className="w-full max-h-full object-contain"
             src={post.postImage}

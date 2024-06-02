@@ -12,6 +12,12 @@ const comitySchema = new Schema(
     description: {
       type: String,
     },
+    profileImage:{
+      type: String,
+    },
+    coverImage:{
+      type: String,
+    },
     owner: {
       type: Schema.Types.ObjectId,
       ref: 'User',

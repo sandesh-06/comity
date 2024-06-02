@@ -5,7 +5,7 @@ import { Provider } from 'react-redux'
 import store from './redux/store.js'
 import App from './App.jsx'
 import {RouterProvider, createBrowserRouter} from "react-router-dom"
-import { AuthLayout, Events, ExploreComity, HomePage, MyComity, OpeningPage } from './pages/index.js'
+import { AuthLayout, ComityPage, Events, ExploreComity, HomePage, MyComity, OpeningPage } from './pages/index.js'
 
 const router = createBrowserRouter([
   {
@@ -29,7 +29,8 @@ const router = createBrowserRouter([
       {
         path: "/my-comitys",
         element: <AuthLayout>
-          <MyComity />
+          {/* <MyComity /> */}
+          <ComityPage />
         </AuthLayout>
       },
       {

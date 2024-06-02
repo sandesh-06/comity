@@ -17,6 +17,7 @@ const Login = ({ setShowLogin }) => {
   const { register, handleSubmit } = useForm();
   
   const LoginSubmit = async (formData) => {
+    // navigate("/my-comitys")
     try {
       const response = await login(formData).unwrap();
       if (response.success){

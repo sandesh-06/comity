@@ -34,7 +34,14 @@ const userSchema = new Schema(
     refreshToken: {
       type: String,
     },
-    otp:{type:String}
+    otp:{type:String},
+    savedPosts: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Post",
+        required: true,
+      },
+    ],
   },
   { timestamps: true }
 );

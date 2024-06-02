@@ -19,6 +19,11 @@ import ExploreAsideContent from "./ExploreComity/ExploreAsideContent";
 import ExploreMainContent from "./ExploreComity/ExploreMainContent";
 import PostPreview from "./Posts/PostPreview";
 import Header from "./Header/Header"
+import ComityDetails from "./ComityPage/ComityDetails";
+import ComityPosts from "./ComityPage/ComityPosts";
+import ComityAbout from "./ComityPage/ComityAbout";
+import ComityEvents from "./ComityPage/ComityEvents";
+
 export {
     // Opening
     Login,
@@ -37,7 +42,7 @@ export {
     PostCard,
     PostPreview,
     Header,
-    
+
     // Home
     LeftContent,
     RightContent,
@@ -50,4 +55,10 @@ export {
     MediaSVG,
     EventSVG,
     ThoughtsSVG,
+
+    //Comity Page
+    ComityDetails,
+    ComityPosts,
+    ComityAbout,
+    ComityEvents,
 }

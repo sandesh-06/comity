@@ -22,24 +22,30 @@ export const createAccount = asyncHandler(async (req, res) => {
   }
 
   //2. Check if user already exists
-  const doesAccountExists = await User.findOne({$or: [{username}, {email}]});
-  if (doesAccountExists) throw new ApiError(409, "Account already exists!");
+  const doesAccountExists = await User.findOne({email});
+  if (doesAccountExists) throw new ApiError(409, "Account already exists with this email");
 
-  //3. Check if password matches
+  //3. Check if username already exists
+  const doesUsernameExists = await User.findOne({username});
+  if (doesUsernameExists) throw new ApiError(409, "Username has been taken!");
+
+  //4.Check for password lenght & Check if password matches
+  if(password.length < 8) throw new ApiError(400, "Password must contain min 8 characters")
   if (password != confirmPassword)
     throw new ApiError("409", "Password doesn't match");
 
-  //4. hash password
+  //5. hash password
   const hashedPassword = await bcrypt.hash(password, 10);
 
-  //4. Create account
+  //6. Create account
   const user = await User.create({
     fullname,
     email,
     username,
     password: hashedPassword,
   });
-  //5. Send response to client
+
+  //7. Send response to client
   return res
     .status(200)
     .json(new ApiResponse(200, "Account has been successfully created!"));
@@ -82,7 +88,7 @@ export const loginAccount = asyncHandler(async (req, res) => {
 
   //5. get user details
   const userDetails = await User.findById(user._id).select(
-    "-password -refreshToken"
+    "-password -refreshToken -otp -savedPosts"
   );
   // console.log(userDetails)
   //6. grant access

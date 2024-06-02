@@ -48,7 +48,7 @@ const SignUp = ({setShowLogin}) => {
           </p>
         </h1>
         {/* Error message */}
-        {msg && msg.status ? (<h1 className="font-cata text-md font-medium text-green-500">{msg.message}</h1>) : (<h1 className="font-cata text-md font-medium text-red-500">{msg.message}</h1>)}
+        {msg && msg.message &&  (<h1 className={`font-cata text-white text-md font-medium p-2 rounded-sm shadow-lg ${msg.status ? "bg-green-600" : "bg-red-600"}`}>{msg.message}</h1>)}
         <form onSubmit={handleSubmit(SignupSubmit)} className="text-center">
           <Input
             label={<MdDriveFileRenameOutline size="25px" />}

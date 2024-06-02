@@ -2,10 +2,10 @@ import React from "react";
 import { FaChevronRight } from "react-icons/fa";
 import { MdLogout } from "react-icons/md";
 import { ThemeButton, ProfileName } from "../index";
-import { useNavigate } from "react-router-dom";
 import { useLogoutMutation } from "../../redux/apiSlices/users/userApiSlice";
 import { useDispatch } from "react-redux";
 import { logoutUser } from "../../redux/stateSlices/authSlice";
+import {createPortal} from 'react-dom'
 
 const ProfileMenu = ({ className = "" }) => {
   const menuList = [
@@ -38,7 +38,8 @@ const ProfileMenu = ({ className = "" }) => {
     }
   }
   return (
-    <menu className={`${className} w-1/2 sm:w-1/3 lg:w-1/5 absolute z-50`}>
+    // PORTAL IS USED TO RENDER THE COMPONENT AT ANY SPECIFIC PLACE IN THE DOM TREE, HERE WE ARE RENDERING IT AT BODY, THIS IS DONE TO ACHIEVE THE STACKING CONTEXT.
+    createPortal(<menu className={`${className} w-1/2 sm:w-1/3 lg:w-1/5 absolute`}>
       <div className="menu-item bg-white shadow-md shadow-gray-300 dark:shadow-black text-slate-700 dark:bg-slate-900 dark:text-slate-50 font-semibold font-cata p-3 rounded-lg">
         {/* Profile */}
         <ProfileName className="px-2 py-3" />
@@ -71,8 +72,10 @@ const ProfileMenu = ({ className = "" }) => {
           </ul>
         </div>
       </div>
-    </menu>
-  );
+    </menu>,
+    document.body
+  )
+)
 };
 
 export default ProfileMenu;

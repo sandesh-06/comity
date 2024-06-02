@@ -20,6 +20,7 @@ export default {
       },
       backgroundImage: {
         'opening': "url('https://res.cloudinary.com/sandesh-06/image/upload/v1715528742/Comity/Untitled_design_wucghe.png')",
+        'comity-cover':"url(https://source.unsplash.com/random/1600x900/?nature)",
       },
       aspectRatio:{
         '4/5':'4 / 5'

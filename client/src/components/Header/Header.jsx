@@ -59,7 +59,7 @@ const Header = () => {
   return (
     <>
       <header className="fixed top-0 left-0 w-full">
-        <div className="bg-slate-50 dark:bg-slate-900 flex justify-between items-center h-16 sm:h-16 px-3 md:px-5 relative shadow-md">
+        <div className="bg-white dark:bg-slate-900 flex justify-between items-center h-16 sm:h-16 px-3 md:px-5 relative shadow-md">
           {/* Logo */}
           <NavLink to="/">
             <div className="hover:cursor-pointer">
@@ -73,7 +73,7 @@ const Header = () => {
 
           {/* NavItems */}
           <div className="h-full hidden sm:block w-full">
-            <ul className="flex justify-center items-center h-full md:gap-4 xl:gap-10">
+            <ul className="flex justify-center items-center h-full xl:gap-10">
               {navItems.map((item) => (
                 <li
                   key={item.text}

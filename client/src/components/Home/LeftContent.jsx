@@ -57,10 +57,10 @@ const LeftContent = () => {
         </div>
         <hr className="border-b border-slate-300 dark:border-slate-700" />
 
-        {/* Recent Events */}
+        {/* Event Suggestions */}
         <div className="flex flex-col my-3 text-nowrap">
           <p className="font-cata text-gray-500 font-semibold text-xl px-2 my-1">
-            Recent Events
+            Event Suggestions
           </p>
           {dummySuggestionData.map((data) => (
             <div className="flex-none" key={data.title}>
