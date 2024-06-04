@@ -17,7 +17,7 @@ const ComityDetails = () => {
     },
   ];
   return (
-    <div className="w-full font-cata dark:text-slate-50 text-slate-950 flex flex-col-reverse sm:flex-row-reverse md:flex-row gap-3 sm:gap-20 justify-between sm:justify-center items-center py-10 px-5 shadow-lg bg-[#ffffffbb] dark:bg-[#0f172acd]">
+    <div className="w-full font-cata dark:text-slate-50 text-slate-950 flex flex-col-reverse sm:flex-row-reverse md:flex-row gap-3 sm:gap-20 justify-between sm:justify-center items-center py-10 px-5 shadow-lg bg-[#ffffffc5] dark:bg-[#0f172adc]">
       {/* Details Part */}
       <div className="flex flex-col gap-5 items-center md:items-start text-center md:text-left">
         <p className="hidden md:block text-3xl font-bold">We share thoughts.</p>
@@ -32,7 +32,7 @@ const ComityDetails = () => {
             </p>
           ))}
         </div>
-        <p className="sm:hidden font-semibold text-lg drop-shadow-sm">
+        <p className="sm:hidden font-semibold text-lg">
           This comity is a comity for the comity by the people in the avalanche.
         </p>
         {/* Join & Role */}
@@ -57,7 +57,7 @@ const ComityDetails = () => {
         <div className="w-32 sm:h-32 md:w-40 md:h-40 overflow-hidden rounded-full shadow-lg">
           <img
             src="https://res.cloudinary.com/sandesh-06/image/upload/v1703266151/samples/man-on-a-street.jpg"
-            alt=""
+            alt="profile pic"
             className="w-full h-full object-cover"
           />
         </div>

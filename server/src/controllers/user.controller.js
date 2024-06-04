@@ -5,6 +5,10 @@ import {
   transporter,
 } from "../utils/index.js";
 import { User } from "../models/user/User.model.js";
+import { UserComityList } from "../models/user/userComitys.model.js";
+import { Comity } from "../models/comitys/comity.model.js";
+import { JoinRequest } from "../models/comitys/joinRequest.model.js";
+import { Member } from "../models/comitys/member.model.js";
 import bcrypt from "bcrypt";
 
 //1. create account
@@ -22,15 +26,17 @@ export const createAccount = asyncHandler(async (req, res) => {
   }
 
   //2. Check if user already exists
-  const doesAccountExists = await User.findOne({email});
-  if (doesAccountExists) throw new ApiError(409, "Account already exists with this email");
+  const doesAccountExists = await User.findOne({ email });
+  if (doesAccountExists)
+    throw new ApiError(409, "Account already exists with this email");
 
   //3. Check if username already exists
-  const doesUsernameExists = await User.findOne({username});
+  const doesUsernameExists = await User.findOne({ username });
   if (doesUsernameExists) throw new ApiError(409, "Username has been taken!");
 
   //4.Check for password lenght & Check if password matches
-  if(password.length < 8) throw new ApiError(400, "Password must contain min 8 characters")
+  if (password.length < 8)
+    throw new ApiError(400, "Password must contain min 8 characters");
   if (password != confirmPassword)
     throw new ApiError("409", "Password doesn't match");
 
@@ -76,7 +82,7 @@ export const loginAccount = asyncHandler(async (req, res) => {
     throw new ApiError(409, "Missing Credentials while login!");
 
   //2. check if user exists
-  const user = await User.findOne({username});
+  const user = await User.findOne({ username });
   if (!user) throw new ApiError(404, "Invalid Credentials!");
 
   //3. check if password correct
@@ -267,4 +273,119 @@ export const changePassword = asyncHandler(async (req, res) => {
   return res
     .status(201)
     .json(new ApiResponse(201, {}, "Password has been successfully changed"));
+});
+
+//6. join comity
+export const joinComity = asyncHandler(async (req, res) => {
+  // 1. Get user id and comity id
+  const { comityId } = req.params;
+  const userId = req.user?._id;
+
+  // Validate ObjectId
+  // if (!mongoose.Types.ObjectId.isValid(comityId)) {
+  //   throw new ApiError(400, "Invalid Comity ID format");
+  // }
+
+  //2. Check if the comity exists and get its details
+  const comity = await Comity.findById(comityId);
+  if (!comity) throw new ApiError(404, "Comity not found");
+
+  //3. Check if whether the user is the owner of the comity
+  const member = await Member.findOne({ user: userId, comity: comityId });
+  if (member && member.role === "owner")
+    throw new ApiError(403, "You are the owner of this comity");
+
+  //4. Check if the comityId is already in the user's comity list
+  let userComityList = await UserComityList.findOne({ user: userId });
+  if (userComityList && userComityList.comitys.includes(comityId)) {
+    throw new ApiError(400, "User already joined this comity");
+  }
+
+  //5. Check if user already has a comity list, if not create one
+  if (!userComityList) {
+    userComityList = await UserComityList.create({
+      user: userId,
+      comitys: [],
+    });
+
+    //add the UserComityList ID to user
+    await User.findOneAndUpdate(userId, {
+      userComityList: userComityList._id
+    })
+  }
+
+  //6. check if the comity is private
+  if (comity.isPrivate) {
+    // Handle join request for private comity
+    let joinRequest = await JoinRequest.findOne({
+      user: userId,
+      comity: comityId,
+    });
+    if (joinRequest && joinRequest.status !== "pending") {
+      await JoinRequest.findByIdAndDelete(joinRequest._id)
+    }
+    else if(joinRequest && joinRequest.status === "pending"){
+      throw new ApiError(400, "Join request already submitted");
+    }
+
+    joinRequest = new JoinRequest({
+      user: userId,
+      comity: comityId,
+      status: "pending", // assuming status field to track the request
+    });
+    await joinRequest.save();
+
+    return res
+      .status(200)
+      .json(
+        new ApiResponse(200, joinRequest, "Join request submitted successfully")
+      );
+  }
+  //7. handle for public comity
+  else {
+    // Add comityId to user's comity list for public comity
+    userComityList.comitys.push(comityId);
+    await userComityList.save();
+
+    // Update the member of this user for the comity
+    const member = await Member.create({
+      user: userId,
+      comity: comityId,
+      role: 'member'
+    })
+    return res
+      .status(200)
+      .json(new ApiResponse(200, {
+        member,
+        userComityList
+      }, `Welcome to ${comity.comityName}`));
+  }
+});
+
+//7. unjoin comity
+export const unjoinComity = asyncHandler(async (req, res) => {
+  //1. Get the comity details
+  const { comityId } = req.params;
+  const comity = await Comity.findById(comityId);
+  if (!comity) throw new ApiError(404, "Comity not found");
+
+  //2. Check if the user has a comity list
+  const userId = req.user?._id;
+  const userComityList = await UserComityList.findOne({ user: userId });
+  if (!userComityList) throw new ApiError(404, "User's comity list not found");
+
+  //3. check if the user is memeber of the comity
+  const isMember = userComityList.comitys.includes(comityId);
+  if (!isMember) throw new ApiError(403, "User is not a member of the comity");
+
+  //4. Remove the comity from the user's comity list
+  userComityList.comitys.pull(comityId);
+  await userComityList.save();
+
+  //5. Delete the membership of the user wrt to the comity
+  await Member.findOneAndDelete({user: userId, comity: comityId})
+
+  return res
+    .status(200)
+    .json(new ApiResponse(200, null, "Successfully left the comity"));
 });

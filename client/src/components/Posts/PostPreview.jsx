@@ -17,6 +17,7 @@ const PostPreview = ({ post }) => {
         <p className="dark:text-white font-medium hover:underline text-nowrap truncate">
           {post.username}
         </p>
+        {/* Post content */}
       </div>
       {post.type === "image" ? (
         <img
@@ -34,19 +35,3 @@ const PostPreview = ({ post }) => {
 };
 
 export default PostPreview;
-
-{
-  /* <div className="w-full h-full bg-gray-800 flex items-center justify-center">
-{post.type === 'image' ? (
-  <img
-    src={post.content}
-    alt="Post"
-    className="w-full h-full object-contain bg-gray-900"
-  />
-) : (
-  <div className="w-full h-full flex items-center justify-center text-white bg-gray-700">
-    {post.content}
-  </div>
-)}
-</div> */
-}

@@ -17,10 +17,6 @@ const memberSchema = new Schema(
       enum: ["owner", "member"],
       required: true,
     },
-    joinedAt: {
-      type: Date,
-      required: true,
-    },
   },
   { timestamps: true }
 );

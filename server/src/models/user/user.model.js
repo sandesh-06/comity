@@ -42,6 +42,10 @@ const userSchema = new Schema(
         required: true,
       },
     ],
+    userComityList: {
+      type: Schema.Types.ObjectId,
+      ref: "UserComityList"
+    }
   },
   { timestamps: true }
 );
@@ -103,4 +107,5 @@ userSchema.methods.generateOTP = function () {
 userSchema.methods.validateOTP = function (otp) {
   return this.otp === otp
 };
+
 export const User = mongoose.model("User", userSchema);

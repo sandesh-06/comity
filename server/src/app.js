@@ -19,8 +19,10 @@ app.use(cookieParser())
 //ROUTES SECTION
 //import routes
 import userRoutes from "./routes/user.routes.js"
+import comityRoutes from "./routes/comity.routes.js"
 
 //routes declare
 app.use("/api/v1/users", userRoutes)
+app.use("/api/v1/comity", comityRoutes)
 
 export default app

@@ -24,10 +24,10 @@ const authSlice = createSlice({
     },
     setPageLoading: (state, action)=>{
       state.isPageLoading = action.payload;
-    }
+    },
   },
 });
 
-export const { loginUser, logoutUser, setPageLoading } = authSlice.actions;
+export const { loginUser, logoutUser, setPageLoading, } = authSlice.actions;
 
 export default authSlice.reducer;

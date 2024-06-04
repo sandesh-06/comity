@@ -82,14 +82,12 @@ const LeftContent = () => {
         <hr className="border-b border-slate-300 dark:border-slate-700" />
 
         {/* Start Comity Button */}
-        <div className="font-cata text-lg px-2 mt-5 font-bold hover:cursor-pointer text-nowrap flex-none">
-          <div className="flex gap-2 items-center bg-gray-300 text-slate-800 hover:bg-gray-200 dark:text-slate-50 dark:bg-slate-600 px-3 py-2 rounded-md dark:hover:bg-slate-700 max-w-fit">
-            <div>
-              <MdGroupAdd size="25px"/>
-            </div>
-            <button>Start Comity</button>
+        <button className="font-cata text-lg mt-5 font-bold hover:cursor-pointer text-nowrap flex-none flex gap-2 justify-center items-center bg-gray-300 text-slate-800 hover:bg-gray-200 dark:text-slate-50 dark:bg-slate-600 p-3 rounded-md dark:hover:bg-slate-700">
+          <div>
+            <MdGroupAdd size="25px" />
           </div>
-        </div>
+          <p>Start Comity</p>
+        </button>
       </div>
     </aside>
   );

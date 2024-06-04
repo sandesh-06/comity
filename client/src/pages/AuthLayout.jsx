@@ -2,15 +2,14 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { SparklesPreview } from "../components/ui/SparklesPreview";
-import { setPageLoading } from "../redux/stateSlices/authSlice";
+import {  setPageLoading } from "../redux/stateSlices/authSlice";
 
 const AuthLayout = ({ children, authentication = true }) => {
   const navigate = useNavigate();
-  const isUserAuthenticated = useSelector(
-    (state) => state.auth.isAuthenticated
-  );
-  const isLoading = useSelector((state) => state.auth.isPageLoading);
-
+  const isUserAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  const isPageLoading = useSelector((state) => state.auth.isPageLoading);
+  const [isAuthChecked, setIsAuthChecked] = useState(false)
+  
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(setPageLoading(true));
@@ -19,16 +18,13 @@ const AuthLayout = ({ children, authentication = true }) => {
     } else if (!authentication && isUserAuthenticated !== authentication) {
       navigate("/");
     }
+    setIsAuthChecked(true)
     dispatch(setPageLoading(false));
-    // setTimeout(() => {
-    //     dispatch(setPageLoading(false))
-    // }, 1400);
-  }, [isUserAuthenticated, navigate, authentication]);
+  }, [isUserAuthenticated, navigate, authentication, dispatch]);
 
-  return isLoading ? (
-    <>
-      <SparklesPreview />
-    </>
+  // Only render children if authentication status is checked
+  return isPageLoading || !isAuthChecked ? (
+    <SparklesPreview />
   ) : (
     <>{children}</>
   );

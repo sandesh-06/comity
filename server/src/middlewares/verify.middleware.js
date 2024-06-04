@@ -2,8 +2,6 @@ import { User } from "../models/user/User.model.js"
 import { ApiError, asyncHandler } from "../utils/index.js"
 import jwt from "jsonwebtoken"
 
-
-
 export const verifyJWT = asyncHandler(async(req, res, next)=>{
     try {
         //1. GET THE ACCESS TOKEN FROM COOKIES
@@ -23,6 +21,6 @@ export const verifyJWT = asyncHandler(async(req, res, next)=>{
         next()
 
     } catch (error) {
-        throw new ApiError(511, "Error in verification of token")
+        throw new ApiError(511, "User not logged in")
     }
 })

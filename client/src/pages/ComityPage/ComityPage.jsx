@@ -9,7 +9,7 @@ const ComityPage = () => {
   return (
     <div className="flex flex-col justify-center items-center">
       {/* Comity Details (Top section) */}
-      <div className="w-full flex justify-center bg-comity-cover bg-no-repeat bg-cover">
+      <div style={{ backgroundImage: 'url(https://source.unsplash.com/random/1600x900/?nature)' }} className="w-full flex justify-center bg-no-repeat bg-cover">
         <ComityDetails />
       </div>
 

@@ -1,11 +1,13 @@
 import { Router } from "express";
-import { verifyJWT } from "../middlewares/verify.middleware.js";
+import { verifyJWT } from "../middlewares/index.js";
 import {
     changePassword,
     createAccount,
+    joinComity,
     loginAccount,
     logoutUser,
     sendOTP,
+    unjoinComity,
     verifyAndChangePassword
 } from "../controllers/user.controller.js"
 
@@ -24,6 +26,11 @@ router.post("/forgot-password/verify-otp", verifyAndChangePassword);
 router.post("/logout", verifyJWT, logoutUser);
 //5. change password
 router.post("/change-password", verifyJWT, changePassword);
+
+//6. join a comity
+router.post("/join-comity/:comityId", verifyJWT, joinComity);
+//7. unjoin a comity
+router.post("/unjoin-comity/:comityId", verifyJWT, unjoinComity);
 
 
 

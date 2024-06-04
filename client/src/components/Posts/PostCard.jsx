@@ -23,7 +23,7 @@ const PostCard = ({ post, className="" }) => {
       </div>
 
       {/* Description */}
-      <div className="px-5 dark:text-slate-100 pb-3 text-black font-medium">
+      <div className="px-5 dark:text-slate-200 text-lg pb-3 text-black font-medium">
         <p className="mt-5">{post.content}</p>
       </div>
 

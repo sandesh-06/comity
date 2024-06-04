@@ -73,7 +73,7 @@ const ProfileMenu = ({ className = "" }) => {
         </div>
       </div>
     </menu>,
-    document.body
+    document.getElementById('root')
   )
 )
 };
